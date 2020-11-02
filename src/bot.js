@@ -1,6 +1,7 @@
 // RUN: npm run start
-
 require('dotenv').config();
+
+
 const { Client } = require('discord.js')
 const client = new Client();
 
