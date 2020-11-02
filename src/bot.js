@@ -1,7 +1,6 @@
 // RUN: npm run start
 require('dotenv').config();
 
-
 const { Client } = require('discord.js')
 const client = new Client();
 
@@ -21,7 +20,10 @@ client.on('message', (message) =>
 
     var lateTime = 
     ['https://media.giphy.com/media/lgIyvBoSKEhuo/giphy.gif', 
-    `You're a bit too late, ${message.author.username}`, "You're a bit too late"];
+    `You're a bit too late, ${message.author.username}`,
+    "You're a bit too late",
+    'https://media.giphy.com/media/6uGhT1O4sxpi8/giphy.gif',
+    `Try again tomorrow, ${message.author.username}`];
 
     var earlyTime = [`Bit to early there, ${message.author.username} ?`, 
     `Ladies and gentlemen, Fastest shooter in the west: ${message.author.username}`, 
@@ -30,6 +32,8 @@ client.on('message', (message) =>
     "You're a bit too early ", 
     'https://media.giphy.com/media/6uGhT1O4sxpi8/giphy.gif'];
     
+    var fs = require('fs');
+
     var today = new Date();
     var time = today.getHours() + ":" + today.getMinutes();
     var theAnswer = '13:37' 
@@ -38,15 +42,25 @@ client.on('message', (message) =>
         if (time === theAnswer){
             var random = Math.floor(Math.random() * correctTime.length)
             message.channel.send(correctTime[random])
+
+            fs.appendFile('log.txt', `${today} - ${message.author.username} \n`, function (err) {
+                if (err) throw err;
+                console.log(`Log updated : ${today} - ${message.author.username} `);
+            });
         }
         else if (time > theAnswer){
             var random = Math.floor(Math.random() * lateTime.length)
             message.channel.send(lateTime[random])
+
         }
         else if (time < theAnswer){
             var random = Math.floor(Math.random() * earlyTime.length)
             message.channel.send(earlyTime[random])
         }      
+    }
+
+    if (message.content === "dbug"){
+        console.log(time);
     }
 
 });
