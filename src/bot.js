@@ -38,7 +38,7 @@ client.on('message', (message) =>
     var theAnswer = '13:37'
     var helper = theAnswer.replace(':', '');
 
-    if (message.content === theAnswer){
+    if (message.content === theAnswer || message.content === helper){
         if (parseFloat(time)  === parseFloat(helper) ){
             var random = Math.floor(Math.random() * correctTime.length)
             message.channel.send(correctTime[random])
