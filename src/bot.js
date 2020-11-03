@@ -22,12 +22,13 @@ client.on('message', (message) =>
     ['https://media.giphy.com/media/lgIyvBoSKEhuo/giphy.gif', 
     `You're a bit too late, ${message.author.username}`,
     "You're a bit too late",
+    "This is not the time you are looking for",
     'https://media.giphy.com/media/6uGhT1O4sxpi8/giphy.gif',
     `Try again tomorrow, ${message.author.username}`];
 
     var earlyTime = [`Bit to early there, ${message.author.username} ?`, 
     `Ladies and gentlemen, the fastest shooter in the west: ${message.author.username}`, 
-    `This is not the time you are looking for`, 
+    "This is not the time you are looking for", 
     "Please try again later", 
     "You're a bit too early ", 
     'https://media.giphy.com/media/6uGhT1O4sxpi8/giphy.gif'];
@@ -54,13 +55,6 @@ client.on('message', (message) =>
             var random = Math.floor(Math.random() * earlyTime.length)
             message.channel.send(earlyTime[random])
         }      
-    };
-
-    if (message.content === "dbug"){
-        console.log(parseFloat(helper));
-        console.log(parseFloat(time));
-
-
     };
 
 });
