@@ -5,8 +5,12 @@ const { Client } = require('discord.js')
 const client = new Client();
 const PREFIX = "!"
 
+var today = new Date();
+var time = today.toLocaleTimeString('en-GB');
+var timeCorrector = parseFloat(time.slice(0, 5).replace(':', ''));
+
 client.on('ready',  () => {
-    console.log(`${client.user.tag} has logged in`)
+    console.log(`${client.user.tag} has logged in ${time}`)
 });
 
 client.on('message', (message) => 
@@ -35,35 +39,31 @@ client.on('message', (message) =>
     "This is not the time you are looking for", 
     "Please try again later", 
     "You're a bit too early "];
-    
-   
+
     var theAnswer = '13:37'
     var helper = theAnswer.replace(':', '');
-    
-    var today = new Date();
-    var time = today.toLocaleTimeString();
-    var timeCorrector = time.slice(0, 5).replace(':', '');
+    var helpernum = parseFloat(helper)
 
     if (message.content === theAnswer || message.content === helper){
 
 
 
-        if (timeCorrector  === helper ){
+        if (timeCorrector  === helpernum ){
             var random = Math.floor(Math.random() * correctTime.length)
             message.channel.send(correctTime[random])
-
         }
 
-        else if (timeCorrector > helper ){
-            var random = Math.floor(Math.random() * lateTime.length)
-            message.channel.send(lateTime[random])
-
-        }
-
-        else if (timeCorrector  <  helper ){
+        else if (timeCorrector  <  helpernum){
             var random = Math.floor(Math.random() * earlyTime.length)
             message.channel.send(earlyTime[random])
-        }      
+        }  
+
+        else if (timeCorrector > helpernum ){
+            var random = Math.floor(Math.random() * lateTime.length)
+            message.channel.send(lateTime[random])
+        }
+
+    
     };
 
     if (message.content === 'ayaya'){
@@ -93,7 +93,6 @@ client.on('message', (message) =>
                 
             if (CMD_NAME === 'debug'){
                 console.log(`${time} ${message.author.username} tried to debug something, lol`)
-                message.channel.send(`We are the Borg. You will be assimilated. Resistance is futile.`)
             }
             
         };
