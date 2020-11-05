@@ -5,12 +5,25 @@ const { Client } = require('discord.js')
 const client = new Client();
 const PREFIX = "!"
 
-var today = new Date();
-var time = today.toLocaleTimeString('en-GB');
-var timeCorrector = parseFloat(time.slice(0, 5).replace(':', ''));
+
+
+function getTime(){
+    var today = new Date();
+    var time = today.toLocaleTimeString('no-NB', { hour12: false });
+
+    return time
+}
+
+function getTimeNum(){
+    var today = new Date();
+    var time = today.toLocaleTimeString('no-NB', { hour12: false });
+    var timeNum = parseFloat(time.slice(0, 5).replace(':', ''));
+
+    return timeNum
+}
 
 client.on('ready',  () => {
-    console.log(`${client.user.tag} has logged in ${time}`)
+    console.log(`${client.user.tag} has logged in ${getTime()}`)
 });
 
 client.on('message', (message) => 
@@ -31,13 +44,14 @@ client.on('message', (message) =>
     "You're a bit too late",
     "This is not the time you are looking for",
     'https://i.imgflip.com/4kvu43.jpg',
+    `13:37 ? But it's ${getTime()} :eyes:`,
     `Try again tomorrow, ${message.author.username}`];
 
     var earlyTime = 
     [`Bit to early there, ${message.author.username} ?`, 
     `Ladies and gentlemen, the fastest shooter in the west: ${message.author.username}`, 
     "This is not the time you are looking for", 
-    "Please try again later", 
+    "Please try again later",
     "You're a bit too early "];
 
     var theAnswer = '13:37'
@@ -48,19 +62,22 @@ client.on('message', (message) =>
 
 
 
-        if (timeCorrector  === helpernum ){
+        if (getTimeNum()  === helpernum ){
             var random = Math.floor(Math.random() * correctTime.length)
             message.channel.send(correctTime[random])
+            console.log(`correctTime answer was triggered @ ${getTime()} with timeNum ${getTimeNum()} by ${message.author.username}`)
         }
 
-        else if (timeCorrector  <  helpernum){
+        else if (getTimeNum() <  helpernum){
             var random = Math.floor(Math.random() * earlyTime.length)
             message.channel.send(earlyTime[random])
+            console.log(`earlyTime answer was triggered @ ${getTime()} with timeNum ${getTimeNum()} by ${message.author.username}`)
         }  
 
-        else if (timeCorrector > helpernum ){
+        else if (getTimeNum() > helpernum ){
             var random = Math.floor(Math.random() * lateTime.length)
             message.channel.send(lateTime[random])
+            console.log(`lateTime answer was triggered @ ${getTime()} with timeNum ${getTimeNum()} by ${message.author.username}`)
         }
 
     
@@ -85,14 +102,15 @@ client.on('message', (message) =>
             message.channel.send("Command list:")
             for (i = 0; i < commands.length; i++) {
                 message.channel.send(`${PREFIX}${commands[i]}`);
-              }}
+            }}
 
             if (CMD_NAME === 'placeholder'){
                 message.channel.send("placeholder")
             }
                 
             if (CMD_NAME === 'debug'){
-                console.log(`${time} ${message.author.username} tried to debug something, lol`)
+                console.log(`${getTime()} ${message.author.username} tried to debug something, lol`)
+                message.channel.send(`Resistance is futile, ${message.author.username}. You will be assimilated`)               
             }
             
         };
