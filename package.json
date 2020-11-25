@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/Pkrakmo/discordjs-bot#readme",
   "dependencies": {
-    "discord.js": "^12.4.1",
-    "dotenv": "^8.2.0"
+    "discord.js": "^12.5.0",
+    "dotenv": "^8.2.0",
+    "mongodb": "^3.6.3"
   }
 }

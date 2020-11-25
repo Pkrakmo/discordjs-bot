@@ -1,11 +1,27 @@
 require('dotenv').config();
 
-const {Client} = require('discord.js')
+const {
+    Client
+} = require('discord.js')
 const client = new Client();
 const PREFIX = "!"
 
-function getDay() {
+let lastNumber
 
+function getRandNumber(x) {
+    var r = Math.floor((Math.random() * x));
+
+    if (r === lastNumber) {
+        return getRandNumber(x)
+    }
+    return r
+}
+
+//Because random was not random enough
+function realRandom(x) {
+    const number = getRandNumber(x)
+    lastNumber = number
+    return number
 }
 
 function getTime() {
@@ -52,7 +68,6 @@ client.on('message', (message) => {
 
     var lateTime = [
         `You're a bit too late ${message.member.displayName}`,
-        "You're a bit too late",
         "This is not the time you are looking for",
         'https://i.imgflip.com/4kvu43.jpg',
         `13:37 ? But it's ${getTime()} :eyes:`,
@@ -73,24 +88,31 @@ client.on('message', (message) => {
     var helpernum = parseFloat(helper)
 
     if (message.content === theAnswer || message.content === helper) {
-
-
-
         if (getTimeNum() === helpernum) {
-            var random = Math.floor(Math.random() * correctTime.length)
-            message.channel.send(correctTime[random])
+            message.channel.send(correctTime[realRandom(correctTime.length)])
             console.log(`correctTime answer was triggered @ ${getTime()} with timeNum ${getTimeNum()} by ${message.member.displayName}`)
         } else if (getTimeNum() < helpernum) {
-            var random = Math.floor(Math.random() * earlyTime.length)
-            message.channel.send(earlyTime[random])
+            message.channel.send(earlyTime[realRandom(earlyTime.length)])
             console.log(`earlyTime answer was triggered @ ${getTime()} with timeNum ${getTimeNum()} by ${message.member.displayName}`)
         } else if (getTimeNum() > helpernum) {
-            var random = Math.floor(Math.random() * lateTime.length)
-            message.channel.send(lateTime[random])
+            message.channel.send(lateTime[realRandom(lateTime.length)])
             console.log(`lateTime answer was triggered @ ${getTime()} with timeNum ${getTimeNum()} by ${message.member.displayName}`)
         }
 
 
+
+    };
+
+    var altAnswer = '13:38'
+    var altHelper = altAnswer.replace(':', '');
+
+    if (message.content === altHelper || message.content === altAnswer) {
+        try {
+            message.react(message.guild.emojis.cache.get('779262760831811584'))
+        } catch (err) {
+            console.log("No access to that emoji ID, probably, moving on")
+            return
+        }
     };
 
     const commands = ["commands", "today", "ayaya"]
@@ -125,11 +147,17 @@ client.on('message', (message) => {
                         `https://media.giphy.com/media/2Qicax4YztZAc/giphy.gif`,
                         `https://tenor.com/view/monday-olan-rogers-its-amonday-gif-13736411`
                     ]
-                    var random = Math.floor(Math.random() * monday.length)
-                    message.channel.send(monday[random])
+                    message.channel.send(monday[realRandom(monday.length)])
                     break;
                 case 2: // Tuesday
-                    message.channel.send(`https://media.giphy.com/media/FLo0LIBIUeI6c/giphy.gif`)
+                    let tuesday = [
+                        `https://media0.giphy.com/media/3o6ozsIxg5legYvggo/source.gif`,
+                        `https://tenor.com/view/disco-tuesday-dog-walk-walking-trick-gif-12255646`,
+                        `https://media.giphy.com/media/idkWREpGm89wwwwAES/giphy.gif`,
+                        `https://media.giphy.com/media/1xoYVYCnezWcr2dImP/giphy.gif`,
+                        `https://media.giphy.com/media/5tsjxsQXLl4GcNsd5S/giphy.gif`
+                    ]
+                    message.channel.send(tuesday[realRandom(tuesday.length)])
                     break;
                 case 3: // Wednesday
                     let wednesday = [
@@ -144,11 +172,17 @@ client.on('message', (message) => {
                         `https://www.youtube.com/watch?v=m2Z0CyuyfMI`,
                         `https://www.youtube.com/watch?v=d-RbOVJNtBs`
                     ]
-                    var random = Math.floor(Math.random() * wednesday.length)
-                    message.channel.send(wednesday[random])
+                    message.channel.send(wednesday[realRandom(wednesday.length)])
                     break;
                 case 4: // Thursday
-                    message.channel.send(`https://media.giphy.com/media/FLo0LIBIUeI6c/giphy.gif`)
+                    let thursday = [
+                        'https://media.giphy.com/media/82rEYzUgZbgQM/giphy.gif',
+                        'https://media.giphy.com/media/jIheCA9EeB5lLauHTT/giphy.gif',
+                        'https://media.giphy.com/media/ce280BjADCmsfgps4t/giphy.gif',
+                        'https://tenor.com/view/man-thursday-feel-dancing-excited-gif-11658563'
+
+                    ]
+                    message.channel.send(thursday[realRandom(thursday.length)])
                     break;
                 case 5: // Friday
                     message.channel.send('https://www.youtube.com/watch?v=kfVsfOSbJY0')
@@ -160,9 +194,10 @@ client.on('message', (message) => {
 
         if (CMD_NAME === 'debug') {
             console.log(`${getTime()} ${message.author.username} tried to debug something, lol`)
-            // message.channel.send(`Resistance is futile, ${message.author.username}. You will be assimilated`)
-            message.channel.send(`Resistance is futile, ${message.member.displayName}. You will be assimilated`)
-
+            //message.channel.send(`Resistance is futile, ${message.author.username}. You will be assimilated`)
+            //message.channel.send(`Resistance is futile, ${message.member.displayName}. You will be assimilated`)
+            //message.reply(`resistance is futile. You will be assimilated`)
+            // message.react(message.guild.emojis.cache.get('301131285840003076'))   // 779262760831811584
         }
 
     };
