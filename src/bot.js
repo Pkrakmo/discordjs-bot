@@ -58,12 +58,19 @@ client.on('message', (message) => {
         'https://media.giphy.com/media/MM0Jrc8BHKx3y/giphy.gif',
         'https://media.giphy.com/media/1fm26vA3UsC8yzuiqC/giphy.gif',
         'https://media.giphy.com/media/iP8P6sbQTrmMM/giphy.gif',
-        'https://media.giphy.com/media/bC0caT4xYU8qQ/giphy.gif',
         'https://media.giphy.com/media/a0h7sAqON67nO/giphy.gif',
         'https://media.giphy.com/media/nqi89GMgyT3va/giphy.gif',
         'https://media.giphy.com/media/l3q2Z6S6n38zjPswo/giphy.gif',
         'https://media.giphy.com/media/aLdiZJmmx4OVW/giphy.gif',
+        'https://media.giphy.com/media/h26R1JMxiqYpwp0rkF/giphy.gif',
+        'https://media.giphy.com/media/10tbKyKsjdrOzC/giphy.gif',
+        'https://media.giphy.com/media/oBPOP48aQpIxq/giphy.gif',
+        'https://media.giphy.com/media/8xSnw21AM7OQo/giphy.gif',
+        'https://media.giphy.com/media/S1Ap7GTcjToZy/giphy.gif',
+        'https://media.giphy.com/media/nLH7f5K1Tb1sY/giphy.gif',
+        'https://media.giphy.com/media/3M9CR4S2KFNyOIqHGg/giphy.gif',
         'https://media.giphy.com/media/236NoPWibFgVi8lBgi/giphy.gif'
+        
     ];
 
     var lateTime = [
@@ -114,6 +121,19 @@ client.on('message', (message) => {
             return
         }
     };
+
+// Bugged AF
+    var reactArray = ['🇫', `${message.guild.emojis.cache.get('779262760831811584')}`]
+
+    if (parseFloat(message.content) > 1338 && parseFloat(message.content) < 1600) {
+        try {
+            message.react(reactArray[realRandom(reactArray.length)])
+        } catch (err) {
+            console.log("No access to that emoji ID, probably, moving on")
+            return
+        }
+    };
+    
 
     const commands = ["commands", "today", "ayaya"]
 
