@@ -1,4 +1,4 @@
-var rr = require('../tools/realRandom.js')
+const realRandom = require('../tools/realRandom.js')
 
 const monday = [
     `https://media.giphy.com/media/UYBXiQpLs0UsU/giphy.gif`,
@@ -52,21 +52,21 @@ const sunday = [
     'https://media.giphy.com/media/FLo0LIBIUeI6c/giphy.gif'
 ]
 
-exports.Today = function() {
+module.exports = function() {
     switch (new Date().getDay()) {
         case 0: // Sunday
-            return (sunday[rr.RealRandom(sunday.length)])
+            return (sunday[realRandom(sunday.length)])
         case 1: // Monday
-            return (monday[rr.RealRandom(monday.length)])
+            return (monday[realRandom(monday.length)])
         case 2: // Tuesday
-            return (tuesday[rr.RealRandom(tuesday.length)])
+            return (tuesday[realRandom(tuesday.length)])
         case 3: // Wednesday
-            return (wednesday[rr.RealRandom(wednesday.length)])
+            return (wednesday[realRandom(wednesday.length)])
         case 4: // Thursday
-            return (thursday[rr.RealRandom(thursday.length)])
+            return (thursday[realRandom(thursday.length)])
         case 5: // Friday
-            return (friday[rr.RealRandom(friday.length)])
+            return (friday[realRandom(friday.length)])
         case 6: // Saturday
-            return (saturday[rr.RealRandom(saturday.length)])
+            return (saturday[realRandom(saturday.length)])
     }
 }

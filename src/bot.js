@@ -1,9 +1,9 @@
 require('dotenv').config();
-var td = require('./commands/today.js')
-var dg = require('./commands/debug.js')
-var lt = require('./commands/leet.js')
-var rr = require('./tools/realRandom.js')
-var tm = require('./tools/time.js')
+const today = require('./commands/today.js')
+const debug = require('./commands/debug.js')
+const leet = require('./commands/leet.js')
+const realRandom = require('./tools/realRandom.js')
+const time = require('./tools/time.js')
 
 const {
     Client
@@ -12,7 +12,7 @@ const client = new Client();
 const PREFIX = "!"
 
 client.on('ready', () => {
-    console.log(`${client.user.tag} has logged in ${tm.time('hhmmss')}`)
+    console.log(`${client.user.tag} has logged in ${time('hh:mm:ss')}`)
 });
 
 client.on('message', (message) => {
@@ -23,22 +23,22 @@ client.on('message', (message) => {
     var altAnswer = theAnswer.replace(':', '');
 
     if (message.content == theAnswer || message.content == altAnswer) {
-        if (tm.time('hhmm') == altAnswer) {
-            message.channel.send(`${lt.leet(message.member.displayName, 'correct')} `)
-        } else if (tm.time('hhmm') < altAnswer) {
-            message.channel.send(`${lt.leet(message.member.displayName, 'early')} `)
-        } else if (tm.time('hhmm') > altAnswer) {
-            message.channel.send(`${lt.leet(message.member.displayName, 'late')} `)
+        if (time('hhmm') == altAnswer) {
+            message.channel.send(`${leet(message.member.displayName, 'correct')} `)
+        } else if (time('hhmm') < altAnswer) {
+            message.channel.send(`${leet(message.member.displayName, 'early')} `)
+        } else if (time('hhmm') > altAnswer) {
+            message.channel.send(`${leet(message.member.displayName, 'late')} `)
         }
 
     };
 
-    var reactArray = ['🇫', `${message.guild.emojis.cache.get('779262760831811584')}`]
+    var reactArray = ['🇫', '⛔', '🙅‍♂️', `${message.guild.emojis.cache.get('779262760831811584')}`]
 
-    if (message.content == tm.time('hhmm')) {
+    if (message.content == time('hhmm')) {
         if (parseFloat(message.content) > 1337 && parseFloat(message.content) < 1700) {
             try {
-                message.react(reactArray[rr.RealRandom(reactArray.length)])
+                message.react(reactArray[realRandom(reactArray.length)])
             } catch (err) {
                 console.log("No access to that emoji ID, probably, moving on")
                 return
@@ -68,7 +68,7 @@ client.on('message', (message) => {
         }
 
         if (CMD_NAME === 'today') {
-            message.channel.send(`${td.Today()} `)
+            message.channel.send(`${today()} `)
         }
 
         if (CMD_NAME === 'welcome') {
@@ -76,14 +76,14 @@ client.on('message', (message) => {
         }
 
         if (CMD_NAME === 'debug') {
-            console.log(`${tm.time('hh:mm:ss')} ${message.author.username} tried to debug something, lol`)
-            //console.log(`${tm.time('hhmmss')}`)
-            message.channel.send(`${dg.Debug()} `)
-            //message.channel.send(`${dg.Debug(message.member.displayName, 'correct')} `)
-            //message.channel.send(`Resistance is futile, ${message.author.username}. You will be assimilated`)
-            //message.channel.send(`Resistance is futile, ${message.member.displayName}. You will be assimilated`)
-            //message.reply(`resistance is futile. You will be assimilated`)
-            //message.react(message.guild.emojis.cache.get('301131285840003076'))   // 779262760831811584
+            console.log(`${time('hh:mm:ss')} ${message.author.username} tried to debug something, lol`)
+            if (message.author.id == process.env.BOT_OWNER_ID){
+                message.channel.send(`${debug('It works')} `)
+            }
+            else {
+                message.channel.send(`But you are not my owner 🤖`)
+            }
+            
         }
     };
 });

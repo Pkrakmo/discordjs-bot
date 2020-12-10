@@ -1,6 +1,6 @@
-var rr = require('../tools/realRandom.js')
-var tm = require('../tools/time.js')
+const realRandom = require('../tools/realRandom.js')
+const time = require('../tools/time.js')
 
-exports.Debug = function() {
-return 'Debug works 🥳'
+module.exports = function(message) {
+return (message)
 }

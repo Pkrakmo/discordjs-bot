@@ -12,7 +12,7 @@ function getRandNumber(x) {
 }
 
 
-exports.RealRandom = function(x) {
+module.exports = function(x) {
     const number = getRandNumber(x)
     lastNumber = number
     return number

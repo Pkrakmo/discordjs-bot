@@ -1,7 +1,7 @@
-var rr = require('../tools/realRandom.js')
-var tm = require('../tools/time.js')
+const realRandom = require('../tools/realRandom.js')
+const time = require('../tools/time.js')
 
-exports.leet = function(name, state) {
+module.exports = function(name, state) {
 
     var early = [
         `Bit to early there ${name}?`,
@@ -30,22 +30,22 @@ exports.leet = function(name, state) {
         `You're a bit too late ${name}`,
         "This is not the time you are looking for",
         'https://i.imgflip.com/4kvu43.jpg',
-        `13:37 ? But it's ${tm.time('hh:mm')} :eyes:`,
+        `13:37 ? But it's ${time('hh:mm')} :eyes:`,
         `:man_shrugging:`,
         `Try again tomorrow ${name}`
     ];
 
-    console.log(`State "${state}" was triggered by ${name} at ${tm.time('hh:mm:ss')}`)
+    console.log(`State "${state}" was triggered by ${name} at ${time('hh:mm:ss')}`)
 
     switch (state) {
         case 'early':
-            return (early[rr.RealRandom(early.length)])
+            return (early[realRandom(early.length)])
         case 'correct':
-            return (correct[rr.RealRandom(correct.length)])
+            return (correct[realRandom(correct.length)])
         case 'late':
-            return (late[rr.RealRandom(late.length)]);
+            return (late[realRandom(late.length)]);
         default:
-            console.log(`State was not set, was triggered by ${name} at ${tm.time('hh:mm:ss')}`)
+            console.log(`State was not set, was triggered by ${name} at ${time('hh:mm:ss')}`)
             return `Well, this is akward 🤷‍♂️`
     }
 

@@ -1,4 +1,4 @@
-exports.time = function (format) {
+module.exports = function (format) {
     var today = new Date();
     var time = today.toLocaleTimeString('no-NB', {
         hour12: false
