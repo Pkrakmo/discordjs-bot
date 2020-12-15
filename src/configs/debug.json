@@ -1,0 +1,29 @@
+{
+    "early": [
+        "Bit to early there ${name}?",
+        "Ladies and gentlemen the fastest shooter in the west: ${name}",
+        "This is not the time you are looking for",
+        "Please try again later",
+        "You're a bit too early"
+    ],
+    "correct": [
+        "https://media.giphy.com/media/Nx0rz3jtxtEre/giphy.gif",
+        "https://media.giphy.com/media/8xgqLTTgWqHWU/giphy.gif",
+        "https://media.giphy.com/media/MM0Jrc8BHKx3y/giphy.gif",
+        "https://media.giphy.com/media/1fm26vA3UsC8yzuiqC/giphy.gif",
+        "https://media.giphy.com/media/iP8P6sbQTrmMM/giphy.gif",
+        "https://media.giphy.com/media/bC0caT4xYU8qQ/giphy.gif",
+        "https://media.giphy.com/media/a0h7sAqON67nO/giphy.gif",
+        "https://media.giphy.com/media/nqi89GMgyT3va/giphy.gif",
+        "https://media.giphy.com/media/l3q2Z6S6n38zjPswo/giphy.gif",
+        "https://media.giphy.com/media/aLdiZJmmx4OVW/giphy.gif",
+        "https://media.giphy.com/media/236NoPWibFgVi8lBgi/giphy.gif"
+    ],
+    "late": [
+        "You're a bit too late {name}",
+        "This is not the time you are looking for",
+        "https://i.imgflip.com/4kvu43.jpg",
+        ":man_shrugging:",
+        "Try again tomorrow ${name}"
+    ]
+}

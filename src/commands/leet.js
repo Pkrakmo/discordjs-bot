@@ -18,7 +18,6 @@ module.exports = function(name, state) {
         'https://media.giphy.com/media/MM0Jrc8BHKx3y/giphy.gif',
         'https://media.giphy.com/media/1fm26vA3UsC8yzuiqC/giphy.gif',
         'https://media.giphy.com/media/iP8P6sbQTrmMM/giphy.gif',
-        'https://media.giphy.com/media/bC0caT4xYU8qQ/giphy.gif',
         'https://media.giphy.com/media/a0h7sAqON67nO/giphy.gif',
         'https://media.giphy.com/media/nqi89GMgyT3va/giphy.gif',
         'https://media.giphy.com/media/l3q2Z6S6n38zjPswo/giphy.gif',

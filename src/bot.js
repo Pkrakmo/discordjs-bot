@@ -46,7 +46,7 @@ client.on('message', (message) => {
         }
     };
 
-    const commands = ["commands", "today", "ayaya", "welcome"]
+    const commands = ["commands", "today", "ayaya", "welcome", "coin"]
 
     if (message.content.startsWith(PREFIX)) {
         if (message.author.bot) return;
@@ -69,6 +69,11 @@ client.on('message', (message) => {
 
         if (CMD_NAME === 'today') {
             message.channel.send(`${today()} `)
+        }
+
+        if (CMD_NAME === 'coin') {
+            coinArray = ["head", "Tail"]
+            message.channel.send(`${coinArray[Math.floor((Math.random() * coinArray.length))]} `)
         }
 
         if (CMD_NAME === 'welcome') {
